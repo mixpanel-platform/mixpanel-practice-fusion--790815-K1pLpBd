@@ -7,9 +7,956 @@
     <script src="https://cdn.mxpnl.com/libs/mixpanel-platform/build/mixpanel-platform.v0.latest.min.js"></script>
   </head>
   <body class="mixpanel-platform-body">
-    <h1>Hello, World!</h1>
+    <style>
+      h1 {
+        color: #E44621;
+        display: inline-block;
+        font-size: 20px;
+        vertical-align: 22px;
+      }
+      img {
+        display: inline-block;
+        height: 60px;
+      }
+      .clearfix:after {
+           visibility: hidden;
+           display: block;
+           font-size: 0;
+           content: " ";
+           clear: both;
+           height: 0;
+           }
+      .clearfix { display: inline-block; }
+      /* start commented backslash hack \*/
+      * html .clearfix { height: 1%; }
+      .clearfix { display: block; }
+      /* close commented backslash hack */
+      
+      body.mixpanel-platform-body {
+      	font: 12px/1.4 'knowledge',Helvetica,Arial,sans-serif;
+      	background:#dee3ec;
+      	padding:10px;
+      }
+      
+      header, section {
+      	background:#f0f2f6;
+      	padding:10px;
+        margin-bottom:10px;
+      }
+      
+      h1 {
+      	color:#00AAFF;
+      	font-size:22px;
+      	font-weight:normal;
+        background-size:contain;
+      }
+      
+      h2 {
+        font-weight: normal;
+        font-size: 16px;
+        color: #002266;
+        margin-bottom:5px;
+      }
+      
+      h3 {
+        font-weight:200;
+        font-size:23px;
+        color:#00AAFF;
+        text-align:center;
+      }
+      
+      h3 span {
+        font-size:16px;
+      }
+      
+      h3.abs {
+        position: absolute;
+        z-index: 1;
+        width: 100%;
+        top: 52px;
+        line-height:21px;
+      }
+      
+      h3.abs.lower {
+        top: 20px;
+        font-size:30px;
+      }
+      
+      h3 span.total {
+        font-size:23px;
+      }
+      
+      h3 span.unitName {
+        font-size:16px;
+        display:block;
+        color: grey;
+      }
+      
+      
+      
+      .moduleContainer {
+        float: left;
+        margin-top:10px;
+      }
+      
+      .moduleContainer .inner {
+        background: #fff;
+        border-radius: 5px;
+        padding: 0;
+        position: relative;
+      }
+      
+      .moduleContainer .inner.fixed {
+        min-height: 130px;
+      }
+      
+      .moduleContainer .inner .graph{
+          height: 80px;
+        padding-top: 50px;
+      }
+      
+      .halfWidth {
+        width:49%;
+        margin-right:1%;
+      }
+      
+      .fullWidth {
+        width:100%;
+      }
+      
+      .quarterWidth {
+        width:24.2%;
+        margin-right:1%;
+      }
+      
+      .thirdWidth {
+        width:32.6%;
+        margin-right:1%;
+      }
+      
+      .twoThirdWidth {
+        width:66%;
+        margin-right:1%;
+      }
+      
+      .threeQuarterWidth {
+        width:100%;
+      }
+      
+      #uniqueUsers {
+        border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      }
+      
+      #pageViews {
+        border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      }
+      
+      .last {
+        margin-right:0;
+      }
+      
+      table {
+        width:100%;
+      }
+      
+      tr {
+      
+      }
+      
+      td {
+        padding:5px;
+        color:#002266;
+        font-size:16px;
+      }
+      
+      td:last-child {
+        text-align:right;
+      }
+      
+      td span {
+        font-size:14px;
+      }
+      
+      td > div {
+        width: 220px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      
+      #downloads .inner {
+        min-height:144px;
+      }
+      
+      #downloads p {
+        margin:0;
+        text-align:center;
+        color:#002266;
+        font-size:14px;
+        max-width: 110px;
+      }
+      
+      
+      .graph.custom {
+        margin-bottom:30px;
+      }
+      
+      .map, .pie {
+        height:400px;
+       padding-top: 64px;
+      }
+      
+      .circle {
+        text-align:center;
+      }
+      
+      .circle canvas {
+        margin:10px 0;
+      }
+      
+      .threeQuarterWidth .inner {
+        width:33%;
+        float:left;
+          border-radius: 0;
+      }
+      
+      
+      .table {
+      }
+
+    </style>
+    <div class="mixpanel-platform-section">
+      <img src="https://practicefusion.s3.amazonaws.com/assets/img/practice-fusion-logo-2014.png">
+      <h1>Practice Fusion | Dashboard</h1>
+    </div>
+    <div class="mixpanel-platform-section">
+      <h2 style="font-size: 18px; color: rgb(95,105,131)">High Level Metrics</h2>
+      <section class="clearfix">
+        <div class="moduleContainer threeQuarterWidth">
+          <div id="uniqueUsers" class="inner fixed">
+            <h3 class="abs"><span class="total"></span><span class="unitName">Unique Users</span></h3>
+            <div class='circle'></div>
+          </div>
+    
+    
+          <div id="newUsers" class="inner fixed">
+            <h3 class="abs"><span class="total"></span><span class="unitName">New Users</span></h3>
+            <div class='circle'></div>
+          </div>
+    
+    
+          <div id="pageViews" class="inner fixed">
+            <h3 class="abs"><span class="total"></span><span class="unitName">Prescriptions <br> Written</span></h3>
+            <div class='circle'></div>
+          </div>
+        </div>      
+      </section>
+  
+
+    </div>
+    <div class="mixpanel-platform-section">
+      <div class="instructions">
+        <h2 style="font-size: 18px; color: rgb(95,105,131)">Practice Level Activity</h2>
+        <p style="font-size: 13px; color: rgb(95,105,131)">Select the customer for which you would like to see the top activity.</p>
+      </div>
+      <div id="dateSelect2" style="float: right;"></div>
+      <div id="companySelect" style="margin-bottom: 15px"></div>
+      <div id="byDomain"></div>
+      <div id="byDomainTable"></div>
+    </div>
+    <div class="mixpanel-platform-section">
+      <div class="instructions">
+        <h2 style="font-size: 18px; color: rgb(95,105,131)">Practice Engagement</h2>
+        <p style="font-size: 13px; color: rgb(95,105,131)">Select the event for which you would like to see the most engaged and least engaged users.</p>
+      </div>
+      <div id="dateSelect" style="float: right;"></div>
+      <div class="event-selects">
+        <div id="event1" style="margin-bottom: 15px"></div>
+      </div>
+      <div class="loading" style="display: none">
+        <p style="font-size: 18px; color: rgb(95,105,131); text-align: center">Loading....</p>
+      </div>
+      <div style="clear: both;"></div>
+      <h1 class="title" style="font-size: 18px; color: rgb(95,105,131); margin-bottom: 15px; display: none">Top Users</h1>
+      <div id="graph1"></div>
+      <div id="table1" style="margin-bottom: 30px"></div>
+      <h1 class="title" style="font-size: 18px; color: rgb(95,105,131); margin: 0 0 15px 5px; display: none">Bottom Users</h1>
+      <div id="graph2" style="margin-bottom: 15px"></div>
+      <div id="table2"></div>
+    </div>
     <script>
-      // Run queries and display results here
+
+      // run through email addresses of all People profiles to get a list of domains
+      var domains = [],
+          companies = [];
+          
+      var companyParams = {
+        name: "Practice Name",
+        event: "Order e-Prescription"
+      }
+      MP.api.query('api/2.0/events/properties/values', companyParams).done(function(results) {
+        console.log(results);
+        companies = results;
+      });
+
+      // populate event and date dropdowns
+      var event1 = $('#event1').MPEventSelect(),
+          dateSelect  = $('#dateSelect').MPDatepicker(),
+          dateSelect2 = $('#dateSelect2').MPDatepicker(),
+          // set company names
+          companyOptions = {items: [
+            {value: 'default', label: '-- Select a customer --'}
+            ]
+          },
+          // set options for MP graphs and MP tables (to be populated later)
+          topGraph  = $('#graph1').MPChart({chartType: 'line', highchartsOptions: {
+              tooltip: {
+                  backgroundColor: '#fffce7'  // Make tooltip background yellow
+              }
+          }}),
+          topTable = $('#table1').MPTable({
+            showPercentages: true,
+            firstColHeader: 'Event'
+          });
+          bottomGraph  = $('#graph2').MPChart({chartType: 'line', highchartsOptions: {
+              tooltip: {
+                  backgroundColor: '#fffce7'  // Make tooltip background yellow
+              }
+          }}),
+          bottomTable = $('#table2').MPTable({
+            showPercentages: true,
+            firstColHeader: 'Event'
+          }),
+          byDomain = $('#byDomain').MPChart({
+            chartType: 'line',
+            highchartsOptions: {tooltip: {backgroundColor: '#fffce7'}}
+          }),
+          byDomainTable = $('#byDomainTable').MPTable({
+            showPercentages: true,
+            firstColHeader: 'Event'
+          });
+          
+          
+      // populate company name dropdown
+      var companySelect;
+      MP.api.query('/api/2.0/events/properties/values', {name: 'Practice Name', event: 'Order e-Prescription'}).done(function(results) {
+        for (var company in results) {
+          companyOptions.items.push({label: results[company], value: results[company]});
+        }
+        companySelect = $('#companySelect').MPSelect(companyOptions);
+        
+        companySelect.on('change', function() {
+          runDomainQuery();
+        });
+        dateSelect2.on('change', function() {
+          runDomainQuery();
+        });
+
+      });
+
+
+      // get event and date dropdown inputs and run segmentation queries for each domain, then order and display them
+      function runQuery() {
+        var topData = {},
+            botData = {},
+            domainObject = {};
+        
+        // obtain event name and date range values from dropdowns
+        var eventName = event1.MPEventSelect('value'),
+            dateRange = dateSelect.MPDatepicker('value');
+        
+        // set parameters and grab segmentation results for each domain
+        if (eventName) {
+          $.each(companies, function(i, domain) {
+            domainObject[domain] = {};
+            params = {
+              from: dateRange.from,
+              to: dateRange.to,
+              "on": "\"" + domain + "\" in string(properties[\"Practice Name\"])", 
+            }
+            MP.api.segment(eventName, params).done(function(results) {
+              total = 0;
+              $.each(results.values(), function(i, dates) {
+                $.each(dates, function(date, num) {
+                  total += num;
+                  domainObject[domain][date] = num;
+                })
+              })
+              domainObject[domain]["total"] = total;
+              // only order data and create graph and table if we've gone through all domains
+              if (domain == domains[domains.length-1]) {
+                $('.loading').hide();
+                
+                // sort activity from highest to lowest
+                var sortable = [];
+                for (var sortDomain in domainObject) {
+                  sortable.push([sortDomain, domainObject[sortDomain]["total"]]);
+                }
+                sortable.sort(function(a, b) {return b[1] - a[1]});
+                
+                // take top and bottom 10 results from sorted list
+                var topDomains = sortable.slice(0, 10);
+                var botDomains = sortable.slice(-10);
+                
+                // add data top top and bottom graphs/tables
+                for (var top in topDomains) {
+                  var topDomain = domainObject[topDomains[top][0]];
+                  var domainName = topDomains[top][0];
+                  delete topDomain["total"];
+                  topData[domainName] = topDomain;
+                }
+                for (var bot in botDomains) {
+                  var botDomain = domainObject[botDomains[bot][0]];
+                  var domainName = botDomains[bot][0];
+                  delete botDomain["total"];
+                  botData[domainName] = botDomain;
+                }
+                $('.title').show();
+                topGraph.MPChart('setData', topData);
+                topTable.MPTable('setData', topData);
+                bottomGraph.MPChart('setData', botData);
+                bottomTable.MPTable('setData', botData);
+              }
+            });
+          });
+        }
+      };
+      
+      // set functions to run when dropdowns change
+      event1.on('change', function(e, eventName) {
+        $('.loading').show();
+        runQuery();
+      });
+      dateSelect.on('change', function() {
+        $('.loading').show();
+        runQuery();
+      });
+
+      function runDomainQuery() {
+        var dateRange2 = dateSelect2.val(),
+            companyName = companySelect.val();
+            
+        if (companyName) {
+          // get all event names 
+          MP.api.query('/api/2.0/events/names').done(function(results) {
+            var allEvents = results;
+            MP.api.query('/api/2.0/events', {event: results, from: dateRange2.from, to: dateRange2.to, unit: 'day', where:'"' + companyName + '" in string(properties["Practice Name"])'}).done(function(segResults) {
+              byDomain.MPChart('setData', segResults.data.values);
+              byDomainTable.MPTable('setData', segResults.data.values);
+            });
+          });
+        }
+      }
+
+// circles
+	var numberWithCommas = function(x) {
+	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+	var uniqueUsers = function() {
+
+		var resultsContainer  = $('#uniqueUsers h3 span.total'),
+			dateRange = dateSelect.MPDatepicker('value'),
+			segmentParams = {
+				from : dateRange.from,
+    			to : dateRange.to,
+    			type : 'unique'
+			}
+
+
+		MP.api.segment('Log In', segmentParams).done(function(resultsObj) {
+			var uniqueUsers = resultsObj.sum().values()['Log In'];
+		    resultsContainer.html('<span>Total</span>' + numberWithCommas(uniqueUsers));
+
+
+			$('#uniqueUsers .circle').circleProgress({
+			  value: 0.7,
+			  size: 120,
+			  startAngle: Math.PI * 1.5,
+			  fill: { color: '#002266' },
+			  animation: {
+			    duration: 1000
+			  },
+			  thickness: 5
+			}).on('circle-animation-progress', function(event, progress, stepValue) {
+			  resultsContainer.text(numberWithCommas(Math.round(uniqueUsers * progress)));
+			});
+		});
+	}
+
+	var newUsers = function() {
+
+		var resultsContainer  = $('#newUsers h3 span.total'),
+			dateRange = dateSelect.MPDatepicker('value'),
+			segmentParams = {
+				from : dateRange.from,
+    			to : dateRange.to
+			};
+
+		MP.api.segment('Sign Up', segmentParams).done(function(resultsObj) {
+			
+			var newUsers = resultsObj.sum().values()['Sign Up'];
+		    resultsContainer.html('<span>Total</span>' + numberWithCommas(newUsers));
+
+		    $('#newUsers .circle').circleProgress({
+			  value: 0.4,
+			  size: 120,
+			  startAngle: Math.PI * 1.5,
+			  fill: { color: '#002266' },
+			  animation: {
+			    duration: 1000
+			  },
+			  thickness: 5
+			}).on('circle-animation-progress', function(event, progress, stepValue) {
+			  resultsContainer.text(numberWithCommas(Math.round(newUsers * progress)));
+			});
+		});
+	}
+
+  	var pageViews = function() {
+  
+  		var resultsContainer  = $('#pageViews h3 span.total'),
+  			dateRange = dateSelect.MPDatepicker('value'),
+  			segmentParams = {
+  				from : dateRange.from,
+      			to : dateRange.to
+  			}
+  
+  		MP.api.segment('Order e-Prescription', segmentParams).done(function(resultsObj) {
+  			var pageViews = resultsObj.sum().values()['Order e-Prescription'];
+  		    resultsContainer.html('<span>Total</span>' + numberWithCommas(pageViews));
+  
+  		    $('#pageViews .circle').circleProgress({
+  			  value: 0.9,
+  			  size: 120,
+  			  startAngle: Math.PI * 1.5,
+  			  fill: { color: '#002266' },
+  			  animation: {
+  			    duration: 1000
+  			  },
+  			  thickness: 5
+  			}).on('circle-animation-progress', function(event, progress, stepValue) {
+  			  resultsContainer.text(numberWithCommas(Math.round(pageViews * progress)));
+  			});
+  		});
+  	};
+
+
+		uniqueUsers();
+		newUsers();
+		pageViews();
+
+
+
+
+
+
+
+
+// circle progress
+
+/*
+jquery-circle-progress - jQuery Plugin to draw animated circular progress bars
+
+URL: http://kottenator.github.io/jquery-circle-progress/
+Author: Rostyslav Bryzgunov <kottenator@gmail.com>
+Version: 1.1.2
+License: MIT
+*/
+(function($) {
+    function CircleProgress(config) {
+        this.init(config);
+    }
+
+    CircleProgress.prototype = {
+        //----------------------------------------------- public options -----------------------------------------------
+        /**
+         * This is the only required option. It should be from 0.0 to 1.0
+         * @type {number}
+         */
+        value: 0.0,
+
+        /**
+         * Size of the circle / canvas in pixels
+         * @type {number}
+         */
+        size: 100.0,
+
+        /**
+         * Initial angle for 0.0 value in radians
+         * @type {number}
+         */
+        startAngle: -Math.PI,
+
+        /**
+         * Width of the arc. By default it's auto-calculated as 1/14 of size, but you may set it explicitly in pixels
+         * @type {number|string}
+         */
+        thickness: 'auto',
+
+        /**
+         * Fill of the arc. You may set it to:
+         *   - solid color:
+         *     - { color: '#3aeabb' }
+         *     - { color: 'rgba(255, 255, 255, .3)' }
+         *   - linear gradient (left to right):
+         *     - { gradient: ['#3aeabb', '#fdd250'], gradientAngle: Math.PI / 4 }
+         *     - { gradient: ['red', 'green', 'blue'], gradientDirection: [x0, y0, x1, y1] }
+         *   - image:
+         *     - { image: 'http://i.imgur.com/pT0i89v.png' }
+         *     - { image: imageObject }
+         *     - { color: 'lime', image: 'http://i.imgur.com/pT0i89v.png' } - color displayed until the image is loaded
+         */
+        fill: {
+            gradient: ['#3aeabb', '#fdd250']
+        },
+
+        /**
+         * Color of the "empty" arc. Only a color fill supported by now
+         * @type {string}
+         */
+        emptyFill: 'rgba(0, 0, 0, .1)',
+
+        /**
+         * Animation config (see jQuery animations: http://api.jquery.com/animate/)
+         */
+        animation: {
+            duration: 1200,
+            easing: 'circleProgressEasing'
+        },
+
+        /**
+         * Default animation starts at 0.0 and ends at specified `value`. Let's call this direct animation.
+         * If you want to make reversed animation then you should set `animationStartValue` to 1.0.
+         * Also you may specify any other value from 0.0 to 1.0
+         * @type {number}
+         */
+        animationStartValue: 0.0,
+
+        /**
+         * Reverse animation and arc draw
+         * @type {boolean}
+         */
+        reverse: false,
+
+        /**
+         * Arc line cap ('butt' (default), 'round' and 'square')
+         * Read more: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.lineCap
+         * @type {string}
+         */
+        lineCap: 'butt',
+
+        //-------------------------------------- protected properties and methods --------------------------------------
+        /**
+         * @protected
+         */
+        constructor: CircleProgress,
+
+        /**
+         * Container element. Should be passed into constructor config
+         * @protected
+         * @type {jQuery}
+         */
+        el: null,
+
+        /**
+         * Canvas element. Automatically generated and prepended to the {@link CircleProgress.el container}
+         * @protected
+         * @type {HTMLCanvasElement}
+         */
+        canvas: null,
+
+        /**
+         * 2D-context of the {@link CircleProgress.canvas canvas}
+         * @protected
+         * @type {CanvasRenderingContext2D}
+         */
+        ctx: null,
+
+        /**
+         * Radius of the outer circle. Automatically calculated as {@link CircleProgress.size} / 2
+         * @protected
+         * @type {number}
+         */
+        radius: 0.0,
+
+        /**
+         * Fill of the main arc. Automatically calculated, depending on {@link CircleProgress.fill} option
+         * @protected
+         * @type {string|CanvasGradient|CanvasPattern}
+         */
+        arcFill: null,
+
+        /**
+         * Last rendered frame value
+         * @protected
+         * @type {number}
+         */
+        lastFrameValue: 0.0,
+
+        /**
+         * Init/re-init the widget
+         * @param {object} config Config
+         */
+        init: function(config) {
+            $.extend(this, config);
+            this.radius = this.size / 2;
+            this.initWidget();
+            this.initFill();
+            this.draw();
+        },
+
+        /**
+         * @protected
+         */
+        initWidget: function() {
+            var canvas = this.canvas = this.canvas || $('<canvas>').prependTo(this.el)[0];
+            canvas.width = this.size;
+            canvas.height = this.size;
+            this.ctx = canvas.getContext('2d');
+        },
+
+        /**
+         * This method sets {@link CircleProgress.arcFill}
+         * It could do this async (on image load)
+         * @protected
+         */
+        initFill: function() {
+            var self = this,
+                fill = this.fill,
+                ctx = this.ctx,
+                size = this.size;
+
+            if (!fill)
+                throw Error("The fill is not specified!");
+
+            if (fill.color)
+                this.arcFill = fill.color;
+
+            if (fill.gradient) {
+                var gr = fill.gradient;
+
+                if (gr.length == 1) {
+                    this.arcFill = gr[0];
+                } else if (gr.length > 1) {
+                    var ga = fill.gradientAngle || 0, // gradient direction angle; 0 by default
+                        gd = fill.gradientDirection || [
+                            size / 2 * (1 - Math.cos(ga)), // x0
+                            size / 2 * (1 + Math.sin(ga)), // y0
+                            size / 2 * (1 + Math.cos(ga)), // x1
+                            size / 2 * (1 - Math.sin(ga))  // y1
+                        ];
+
+                    var lg = ctx.createLinearGradient.apply(ctx, gd);
+
+                    for (var i = 0; i < gr.length; i++) {
+                        var color = gr[i],
+                            pos = i / (gr.length - 1);
+
+                        if ($.isArray(color)) {
+                            pos = color[1];
+                            color = color[0];
+                        }
+
+                        lg.addColorStop(pos, color);
+                    }
+
+                    this.arcFill = lg;
+                }
+            }
+
+            if (fill.image) {
+                var img;
+
+                if (fill.image instanceof Image) {
+                    img = fill.image;
+                } else {
+                    img = new Image();
+                    img.src = fill.image;
+                }
+
+                if (img.complete)
+                    setImageFill();
+                else
+                    img.onload = setImageFill;
+            }
+
+            function setImageFill() {
+                var bg = $('<canvas>')[0];
+                bg.width = self.size;
+                bg.height = self.size;
+                bg.getContext('2d').drawImage(img, 0, 0, size, size);
+                self.arcFill = self.ctx.createPattern(bg, 'no-repeat');
+                self.drawFrame(self.lastFrameValue);
+            }
+        },
+
+        draw: function() {
+            if (this.animation)
+                this.drawAnimated(this.value);
+            else
+                this.drawFrame(this.value);
+        },
+
+        /**
+         * @protected
+         * @param {number} v Frame value
+         */
+        drawFrame: function(v) {
+            this.lastFrameValue = v;
+            this.ctx.clearRect(0, 0, this.size, this.size);
+            this.drawEmptyArc(v);
+            this.drawArc(v);
+        },
+
+        /**
+         * @protected
+         * @param {number} v Frame value
+         */
+        drawArc: function(v) {
+            var ctx = this.ctx,
+                r = this.radius,
+                t = this.getThickness(),
+                a = this.startAngle;
+
+            ctx.save();
+            ctx.beginPath();
+
+            if (!this.reverse) {
+                ctx.arc(r, r, r - t / 2, a, a + Math.PI * 2 * v);
+            } else {
+                ctx.arc(r, r, r - t / 2, a - Math.PI * 2 * v, a);
+            }
+
+            ctx.lineWidth = t;
+            ctx.lineCap = this.lineCap;
+            ctx.strokeStyle = this.arcFill;
+            ctx.stroke();
+            ctx.restore();
+        },
+
+        /**
+         * @protected
+         * @param {number} v Frame value
+         */
+        drawEmptyArc: function(v) {
+            var ctx = this.ctx,
+                r = this.radius,
+                t = this.getThickness(),
+                a = this.startAngle;
+
+            if (v < 1) {
+                ctx.save();
+                ctx.beginPath();
+
+                if (v <= 0) {
+                    ctx.arc(r, r, r - t / 2, 0, Math.PI * 2);
+                } else {
+                    if (!this.reverse) {
+                        ctx.arc(r, r, r - t / 2, a + Math.PI * 2 * v, a);
+                    } else {
+                        ctx.arc(r, r, r - t / 2, a, a - Math.PI * 2 * v);
+                    }
+                }
+
+                ctx.lineWidth = t;
+                ctx.strokeStyle = this.emptyFill;
+                ctx.stroke();
+                ctx.restore();
+            }
+        },
+
+        /**
+         * @protected
+         * @param {number} v Value
+         */
+        drawAnimated: function(v) {
+            var self = this,
+                el = this.el;
+
+            el.trigger('circle-animation-start');
+
+            $(this.canvas)
+                .stop(true, true)
+                .css({ animationProgress: 0 })
+                .animate({ animationProgress: 1 }, $.extend({}, this.animation, {
+                    step: function(animationProgress) {
+                        var stepValue = self.animationStartValue * (1 - animationProgress) + v * animationProgress;
+                        self.drawFrame(stepValue);
+                        el.trigger('circle-animation-progress', [animationProgress, stepValue]);
+                    },
+                    complete: function() {
+                        el.trigger('circle-animation-end');
+                    }
+                }));
+        },
+
+        /**
+         * @protected
+         * @returns {number}
+         */
+        getThickness: function() {
+            return $.isNumeric(this.thickness) ? this.thickness : this.size / 14;
+        }
+    };
+
+    //-------------------------------------------- Initiating jQuery plugin --------------------------------------------
+    $.circleProgress = {
+        // Default options (you may override them)
+        defaults: CircleProgress.prototype
+    };
+
+    // ease-in-out-cubic
+    $.easing.circleProgressEasing = function(x, t, b, c, d) {
+        if ((t /= d / 2) < 1)
+            return c / 2 * t * t * t + b;
+        return c / 2 * ((t -= 2) * t * t + 2) + b;
+    };
+
+    /**
+     * Draw animated circular progress bar.
+     *
+     * Appends <canvas> to the element or updates already appended one.
+     *
+     * If animated, throws 3 events:
+     *
+     *   - circle-animation-start(jqEvent)
+     *   - circle-animation-progress(jqEvent, animationProgress, stepValue) - multiple event;
+     *                                                                        animationProgress: from 0.0 to 1.0;
+     *                                                                        stepValue: from 0.0 to value
+     *   - circle-animation-end(jqEvent)
+     *
+     * @param config Example: { value: 0.75, size: 50, animation: false };
+     *                you may set any of public options;
+     *                `animation` may be set to false;
+     *                you may also use .circleProgress('widget') to get the canvas
+     */
+    $.fn.circleProgress = function(config) {
+        var dataName = 'circle-progress';
+
+        if (config == 'widget') {
+            var data = this.data(dataName);
+            return data && data.canvas;
+        }
+
+        return this.each(function() {
+            var el = $(this),
+                instance = el.data(dataName),
+                cfg = $.isPlainObject(config) ? config : {};
+
+            if (instance) {
+                instance.init(cfg);
+            } else {
+                cfg.el = el;
+                instance = new CircleProgress(cfg);
+                el.data(dataName, instance);
+            }
+        });
+    };
+})(jQuery);
+      
+      
     </script>
   </body>
 </html>
